@@ -134,6 +134,6 @@ function makeScreen(letterW, letterH, font, fadeRate) {
   setInterval(function() {
     redraw(i);
     i++;
-  }, 10);
+  }, 30);
   return screen;
 }

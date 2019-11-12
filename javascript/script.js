@@ -1,4 +1,4 @@
-$(function() {
+document.addEventListener('DOMContentLoaded', function() {
   var screen = makeScreen(10, 18, "16px Courier", 0.085);
 
   function obj(born, conf) {
@@ -37,7 +37,7 @@ $(function() {
           this.radius,this.color,this.brightness(t));
       }
     }
-    return $.extend(obj, conf || {});
+    return Object.assign(obj, conf || {});
   }
   function rocket(born, conf) {
     var rocket = obj(born, {
@@ -57,7 +57,7 @@ $(function() {
         }));
       }
     });
-    return $.extend(rocket, conf || {});
+    return Object.assign(rocket, conf || {});
   }
   function star() {
     return obj(0, {
@@ -161,4 +161,4 @@ $(function() {
     }
   }
 
-});
+}, false);

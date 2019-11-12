@@ -7,7 +7,7 @@ function makeScreen(letterW, letterH, font, fadeRate) {
   var buffer = buffer_canvas.getContext('2d');
   fadeRate = Math.max(Math.min(fadeRate,1),0);
 
-  $('body').append(canvas);
+  document.body.appendChild(canvas);
 
   var w = 0;
   var h = 0;
@@ -19,8 +19,8 @@ function makeScreen(letterW, letterH, font, fadeRate) {
   var pixels = [];
 
   function resetScreen() {
-    pixelW = $(document).width();
-    pixelH = $(document).height();
+    pixelW = window.innerWidth;
+    pixelH = window.innerHeight;
     w = Math.floor(pixelW/letterW)+1;
     h = Math.floor(pixelH/letterH)+1;
     factor = Math.min(pixelW,pixelH);
@@ -99,7 +99,7 @@ function makeScreen(letterW, letterH, font, fadeRate) {
           if (cur_dist2 < dist2) {
             var cur_r = (dist2-cur_dist2)/dist2;
             drawPixel(cx,cy,
-              Math.ceil(cur_r*value*2.55), 
+              Math.ceil(cur_r*value*2.55),
               hsl(color,100,Math.min(100,value*0.8+(cur_r*30)))
             );
           }
@@ -115,7 +115,7 @@ function makeScreen(letterW, letterH, font, fadeRate) {
           var cd = (dx*dx+dy*dy);
           if (cd < d) {
             drawPixel(cx,cy,
-              Math.ceil((d-cd)/d*value*2.55), 
+              Math.ceil((d-cd)/d*value*2.55),
               hsl(color,100,Math.min(100,0.5+value*0.8+((d-cd)/d*10)))
             );
           }
@@ -128,7 +128,7 @@ function makeScreen(letterW, letterH, font, fadeRate) {
   }
 
   resetScreen();
-  $(window).resize(resetScreen);
+  window.addEventListener("resize", resetScreen);
 
   var i = 0;
   setInterval(function() {
